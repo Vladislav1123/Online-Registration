@@ -13,6 +13,8 @@
 <input id="num2"/>
 <button class="plus">+</button>
 <button class="minus">-</button>
+<button class="multiplication">*</button>
+<button class="diving">/</button>
 
 
 <p id="result"></p>
@@ -42,9 +44,29 @@
         minusCalculate()
     })
 
+    function multiplicationCalculate(){
+        var num1 = Number(document.getElementById("num1").value);
+        var num2 = Number(document.getElementById("num2").value);
+        var result = num1 * num2;
 
+        document.getElementById("result").innerHTML = result;
+    }
 
+    document.querySelector('.multiplication').addEventListener('click' , function (){
+        multiplicationCalculate()
+    })
 
+    function divingCalculate(){
+        var num1 = Number(document.getElementById("num1").value);
+        var num2 = Number(document.getElementById("num2").value);
+        var result = num1 / num2;
+
+        document.getElementById("result").innerHTML = result;
+    }
+
+    document.querySelector('.diving').addEventListener('click' , function (){
+        divingCalculate()
+    })
 
 
 
