@@ -44,7 +44,7 @@
         minusCalculate()
     })
 
-    function multiplicationCalculate(){
+    function multiplicationCalculate() {
         var num1 = Number(document.getElementById("num1").value);
         var num2 = Number(document.getElementById("num2").value);
         var result = num1 * num2;
@@ -52,11 +52,11 @@
         document.getElementById("result").innerHTML = result;
     }
 
-    document.querySelector('.multiplication').addEventListener('click' , function (){
-        multiplicationCalculate()
-    })
+    document.querySelector('.multiplication').addEventListener('click',  multiplicationCalculate)
+    console.log(multiplicationCalculate)
 
-    function divingCalculate(){
+
+    function divingCalculate() {
         var num1 = Number(document.getElementById("num1").value);
         var num2 = Number(document.getElementById("num2").value);
         var result = num1 / num2;
@@ -64,9 +64,8 @@
         document.getElementById("result").innerHTML = result;
     }
 
-    document.querySelector('.diving').addEventListener('click' , function (){
-        divingCalculate()
-    })
+    document.querySelector('.diving').addEventListener('click',  divingCalculate)
+    console.log(divingCalculate)
 
 
 
