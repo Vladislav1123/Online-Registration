@@ -12,6 +12,9 @@
             }
         h1{text-align: center;
         font-size: small;}
+        land{
+            color: red;
+        }
     </style>
 
 </head>
@@ -23,24 +26,92 @@
 <h1>
     <p1> Last Name </p1>
     <input type="text" id="last_name">
+    <land id="last_name_error"></land>
 
     <p1> First Name </p1>
     <input type="text" id="first_name">
+    <land id="first_name_error"></land>
 
     <p> Email Address </p>
     <input type="text" id="email">
+    <land id="email_error"></land>
 
     <p> Company (if applicable) </p>
     <input type="text" id="company">
 
     <p> Physical Address </p>
     <input type="text" id="address">
+    <land id="address_error"></land>
 
     <p> Date of Birth </p>
     <input type="date" id="birth">
+    <land id="birth_error"></land>
+
+    <p>
+        <button type="button" class="registrationForm"> Submit </button>
+    </p>
 
 </h1>
 
+<script>
+    window.onload = function() {
+        var lastName = document.getElementById('last_name');
+        var firstName = document.getElementById('first_name');
+        var email = document.getElementById('email');
+        var address = document.getElementById('address');
+
+        var lastNameError = document.getElementById('last_name_error');
+        var firstNameError = document.getElementById('first_name_error');
+        var emailError = document.getElementById('email_error');
+        var addressError = document.getElementById('address_error');
+
+        lastName.onblur = function() {
+            if (lastName.value === "") {
+                lastName.style.border = "1px solid red";
+                lastNameError.textContent = "Прізвище не може бути порожнім";
+            } else {
+                lastName.style.border = "";
+                lastNameError.textContent = "";
+            }
+        };
+
+        firstName.onblur = function() {
+            if (firstName.value === "") {
+                firstName.style.border = "1px solid red";
+                firstNameError.textContent = "Ім'я не може бути порожнім";
+            } else {
+                firstName.style.border = "";
+                firstNameError.textContent = "";
+            }
+        };
+
+        email.onblur = function() {
+            if (email.value.indexOf('@') === -1) {
+                email.style.border = "1px solid red";
+                emailError.textContent = "Введіть коректну електронну адресу";
+            } else {
+                email.style.border = "";
+                emailError.textContent = "";
+            }
+        };
+
+        address.onblur = function() {
+            if (address.value === "") {
+                address.style.border = "1px solid red";
+                addressError.textContent = "Адреса не може бути порожньою";
+            } else {
+                address.style.border = "";
+                addressError.textContent = "";
+            }
+        };
+
+        document.querySelector('.registrationForm').addEventListener('click', function() {
+            document.querySelector('.registrationForm').innerHTML = "Дякуємо за реєстрацію!";
+        });
+
+    };
+
+</script>
 
 </body>
 </html>
