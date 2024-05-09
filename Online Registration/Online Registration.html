@@ -65,50 +65,47 @@
         var emailError = document.getElementById('email_error');
         var addressError = document.getElementById('address_error');
 
-        lastName.onblur = function() {
-            if (lastName.value === "") {
-                lastName.style.border = "1px solid red";
-                lastNameError.textContent = "Прізвище не може бути порожнім";
+        function validateField(field, errorElement, errorMessage) {
+            if (field.value === "" || (field === email && field.value.indexOf('@') === -1)) {
+                field.style.border = "1px solid red";
+                errorElement.textContent = errorMessage;
+                return false;
             } else {
-                lastName.style.border = "";
-                lastNameError.textContent = "";
+                field.style.border = "";
+                errorElement.textContent = "";
+                return true;
             }
+        }
+
+        lastName.onblur = function() {
+            validateField(lastName, lastNameError, "Прізвище не може бути порожнім");
         };
 
         firstName.onblur = function() {
-            if (firstName.value === "") {
-                firstName.style.border = "1px solid red";
-                firstNameError.textContent = "Ім'я не може бути порожнім";
-            } else {
-                firstName.style.border = "";
-                firstNameError.textContent = "";
-            }
+            validateField(firstName, firstNameError, "Ім'я не може бути порожнім");
         };
 
         email.onblur = function() {
-            if (email.value.indexOf('@') === -1) {
-                email.style.border = "1px solid red";
-                emailError.textContent = "Введіть коректну електронну адресу";
-            } else {
-                email.style.border = "";
-                emailError.textContent = "";
-            }
+            validateField(email, emailError, "Введіть коректну електронну адресу");
         };
 
         address.onblur = function() {
-            if (address.value === "") {
-                address.style.border = "1px solid red";
-                addressError.textContent = "Адреса не може бути порожньою";
-            } else {
-                address.style.border = "";
-                addressError.textContent = "";
-            }
+            validateField(address, addressError, "Адреса не може бути порожньою");
         };
 
-        document.querySelector('.registrationForm').addEventListener('click', function() {
+        document.querySelector('.registrationForm').addEventListener('click', function(e) {
+            var isLastNameValid = validateField(lastName, lastNameError, "Прізвище не може бути порожнім");
+            var isFirstNameValid = validateField(firstName, firstNameError, "Ім'я не може бути порожнім");
+            var isEmailValid = validateField(email, emailError, "Введіть коректну електронну адресу");
+            var isAddressValid = validateField(address, addressError, "Адреса не може бути порожньою");
+
+            if (!isLastNameValid || !isFirstNameValid || !isEmailValid || !isAddressValid) {
+                e.preventDefault();
+                return false;
+            }
+
             document.querySelector('.registrationForm').innerHTML = "Дякуємо за реєстрацію!";
         });
-
     };
 
 </script>
